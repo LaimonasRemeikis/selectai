@@ -51,33 +51,29 @@
 <style lang="sass" scoped></style>
 
 <script>
-import boxCard from './boxCard';
 export default {
     name: "Form",
-    components: {
-        boxCard,
-    },
-    data: function () {
+    data() {
         return {
             newBox: {
                 title: "",
-                selected: [],
-                weight: [],
+                selected: '',
+                weight: '',
                technology: [],
                 msg: "",
             },
         };
     },
     methods: {
-        addNewBox: function () {
+        addNewBox() {
             this.$emit("create-new-box", this.newBox);
             this.resetBox();
         },
-        resetBox: function () {
+        resetBox() {
             this.newBox = {
                 title: "",
-                selected: [],
-                weight: [],
+                selected: '',
+                weight: '',
                 technology: [],
                 msg: "",
             };

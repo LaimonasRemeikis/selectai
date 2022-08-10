@@ -1,35 +1,40 @@
 <template>
   <div>
-    <Form v-on:create-new-box="addBox($event)"></Form>
-    <BoxCard 
-    v-for="(item, index) in listOfBox"
-    v-bind:key="index"
-    :box="item"></BoxCard>
+    <box-form @create-new-box="addBox($event)"></box-form>
+    <box-card 
+      v-for="(item, index) in listOfBox"
+      :key="index"
+      :box="item"
+      :new-box="listOfBox[index]">
+    </box-card>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import Form from '~/components/Form.vue'
-import BoxCard from '~/components/boxCard.vue'
+
+
+
 
 export default Vue.extend({
+    // components: { boxCard, Form  },
     name: "IndexPage",
-    components: { Form, BoxCard },
-    data:function () {
+    // components: { Form, boxCard },
+    data() {
       return{
        
         listOfBox: [{
           title:"Boxes",
-          selected: [],
-          weight: [],
-          technology: [],
+          selected: 'cotton',
+          weight: '7kg',
+          technology: ['isPerishable'],
           msg: 'labas'
         }]
       }
     },
      methods: {
-  addBox: function(theNewBox) {
+  addBox: function(theNewBox: any) {
+    console.log(theNewBox, 'newBox')
     this.listOfBox.unshift(theNewBox);
   }
 }
